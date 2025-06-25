@@ -77,7 +77,14 @@ export class PedidoService {
   }
 
   async buscaPedidosPorUsuario(usuarioId: string) {
-    return await this.pedidoRepository.find({ where: { usuario: { id: usuarioId } } });
+    const usuario = await this.buscaUsuario(usuarioId);
+
+    return this.pedidoRepository.find({
+      where: { usuario: { id: usuarioId } },
+      relations: {
+        usuario: true,
+      },
+    });
   }
 
   async atualizaStatusPedido(pedidoId: string, dadosDeAtualizacao: AtualizaPedidoDTO) {
