@@ -15,6 +15,28 @@ export class ProdutoService {
   async criaProduto(dadosDoProduto: CriaProdutoDTO) {
     const produtoEntity = new ProdutoEntity();
 
+    // Copia os campos simples
+    // Object.assign(produtoEntity, {
+    //   nome: dadosDoProduto.nome,
+    //   descricao: dadosDoProduto.descricao,
+    //   preco: dadosDoProduto.preco,
+    //   // ...outros campos simples
+    // });
+
+    // // Converte características do DTO para entidades
+    // produtoEntity.caracteristicas = dadosDoProduto.caracteristicas?.map((caracteristicaDto) => {
+    //   const caracteristica = new ProdutoCaracteristicaEntity();
+    //   Object.assign(caracteristica, caracteristicaDto);
+    //   return caracteristica;
+    // });
+
+    // // Converte imagens do DTO para entidades
+    // produtoEntity.imagens = dadosDoProduto.imagens?.map((imagemDto) => {
+    //   const imagem = new ProdutoImagemEntity();
+    //   Object.assign(imagem, imagemDto);
+    //   return imagem;
+    // });
+
     produtoEntity.nome = dadosDoProduto.nome;
     produtoEntity.valor = dadosDoProduto.valor;
     produtoEntity.quantidadeDisponivel = dadosDoProduto.quantidadeDisponivel;

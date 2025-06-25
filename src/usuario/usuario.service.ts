@@ -16,9 +16,7 @@ export class UsuarioService {
   async criaUsuario(dadosDoUsuario: CriaUsuarioDto) {
     const usuarioEntity = new UsuarioEntity();
 
-    usuarioEntity.nome = dadosDoUsuario.nome;
-    usuarioEntity.email = dadosDoUsuario.email;
-    usuarioEntity.senha = dadosDoUsuario.senha;
+    Object.assign(usuarioEntity, dadosDoUsuario as UsuarioEntity);
 
     return await this.usuarioRepository.save(usuarioEntity);
   }
