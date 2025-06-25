@@ -53,6 +53,16 @@ export class ProdutoService {
     return produtosSalvos;
   }
 
+  async buscaProduto(id: string): Promise<ProdutoEntity> {
+    const produtoSalvo = await this.produtoRepository.findOne({ where: { id } });
+
+    if (!produtoSalvo) {
+      throw new NotFoundException('Produto nao encontrado');
+    }
+
+    return produtoSalvo;
+  }
+
   async atualizaProduto(id: string, novosDados: AtualizaProdutoDTO): Promise<ProdutoEntity> {
     await this.produtoRepository.update(id, novosDados);
     const produtoAtualizado = await this.produtoRepository.findOne({ where: { id } });
