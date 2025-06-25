@@ -4,10 +4,10 @@ import { AtualizaPedidoDTO } from './dto/AtualizaPedido';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PedidoEntity } from './pedido.entity';
 import { In, Repository } from 'typeorm';
-import { UsuarioEntity } from 'src/usuario/usuario.entity';
+import { UsuarioEntity } from 'src/modulos/usuario/usuario.entity';
 import { StatusPedido } from './enum/statusPedido.enum';
 import { ItemPedidoEntity } from './itempedido.entity';
-import { ProdutoEntity } from 'src/produto/produto.entity';
+import { ProdutoEntity } from 'src/modulos/produto/produto.entity';
 
 @Injectable()
 export class PedidoService {
