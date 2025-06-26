@@ -26,7 +26,9 @@ export class ProdutoController {
   @Get('/:id')
   @UseInterceptors(CacheInterceptor)
   async buscaProduto(@Param('id') id: string) {
-    return this.produtoService.buscaProduto(id);
+    const produtoSalvo = await this.produtoService.buscaProduto(id);
+
+    return produtoSalvo;
   }
 
   @Put('/:id')
