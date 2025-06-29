@@ -52,10 +52,6 @@ export class UsuarioService {
       where: { email },
     });
 
-    if (checkEmail === null) {
-      throw new NotFoundException('O e-mail não foi encontrado');
-    }
-
     return checkEmail;
   }
 }

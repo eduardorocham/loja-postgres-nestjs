@@ -9,6 +9,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { FiltroDeExcecaoGlobal } from './recursos/filtros/filtro-de-excessao-global';
 import { CacheModule } from '@nestjs/cache-manager';
 import { createKeyv } from '@keyv/redis';
+import { AutenticacaoModule } from './modulos/autenticacao/autenticacao.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { createKeyv } from '@keyv/redis';
       },
       isGlobal: true,
     }),
+    AutenticacaoModule,
   ],
   providers: [
     {
