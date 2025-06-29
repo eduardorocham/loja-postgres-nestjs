@@ -27,7 +27,7 @@ import { createKeyv } from '@keyv/redis';
       useFactory: async () => {
         return {
           stores: [createKeyv('redis://localhost:6379')],
-          ttl: 10 * 1000,
+          ttl: 60 * 1000,
         };
       },
       isGlobal: true,
