@@ -1,8 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Delete, Query, UseGuards } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { CriaPedidoDTO } from './dto/CriaPedido.dto';
 import { AtualizaPedidoDTO } from './dto/AtualizaPedido';
+import { AutenticacaoGuard } from '../autenticacao/autenticacao.guard';
 
+@UseGuards(AutenticacaoGuard)
 @Controller('/pedidos')
 export class PedidoController {
   constructor(private readonly pedidoService: PedidoService) {}
