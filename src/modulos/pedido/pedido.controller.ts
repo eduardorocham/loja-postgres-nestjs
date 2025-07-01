@@ -1,8 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Delete, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Delete, Query, UseGuards, Req } from '@nestjs/common';
 import { PedidoService } from './pedido.service';
 import { CriaPedidoDTO } from './dto/CriaPedido.dto';
 import { AtualizaPedidoDTO } from './dto/AtualizaPedido';
-import { AutenticacaoGuard } from '../autenticacao/autenticacao.guard';
+import { AutenticacaoGuard, RequisicaoComUsuario } from '../autenticacao/autenticacao.guard';
 
 @UseGuards(AutenticacaoGuard)
 @Controller('/pedidos')
@@ -10,7 +10,8 @@ export class PedidoController {
   constructor(private readonly pedidoService: PedidoService) {}
 
   @Post()
-  async criaPedido(@Query('usuarioId') usuarioId: string, @Body() dadosDoPedido: CriaPedidoDTO) {
+  async criaPedido(@Req() req: RequisicaoComUsuario, @Body() dadosDoPedido: CriaPedidoDTO) {
+    const usuarioId = req.usuario.sub;
     const pedidoCriado = await this.pedidoService.cadastraPedido(usuarioId, dadosDoPedido);
 
     return {
@@ -20,7 +21,8 @@ export class PedidoController {
   }
 
   @Get()
-  async buscaPedidosPorUsuario(@Query('usuarioId') usuarioId: string) {
+  async buscaPedidosPorUsuario(@Req() req: RequisicaoComUsuario) {
+    const usuarioId = req.usuario.sub;
     const pedidos = await this.pedidoService.buscaPedidosPorUsuario(usuarioId);
     return { pedidos };
   }
